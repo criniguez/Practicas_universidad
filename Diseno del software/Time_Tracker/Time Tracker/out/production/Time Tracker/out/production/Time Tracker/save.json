@@ -1,0 +1,74 @@
+{
+  "Initial_date": "2022-11-17T17:37:33.619882200",
+  "children": [
+    {
+      "Initial_date": "2022-11-17T17:37:33.619882200",
+      "IntervalList": [
+        {
+          "duration": "PT6S",
+          "Initial_date": "2022-11-17T17:37:33.619882200",
+          "Final_date": "2022-11-17T17:37:39.618781100"
+        },
+        {
+          "duration": "PT4S",
+          "Initial_date": "2022-11-17T17:37:55.619331600",
+          "Final_date": "2022-11-17T17:37:59.618781100"
+        }
+      ],
+      "name": "transportation",
+      "tag": "",
+      "class": "Task",
+      "Final_date": "2022-11-17T17:37:59.618781100"
+    },
+    {
+      "Initial_date": "2022-11-17T17:37:41.618680300",
+      "children": [
+        {
+          "Initial_date": "2022-11-17T17:37:41.618680300",
+          "children": [
+            {
+              "Initial_date": "2022-11-17T17:37:41.618680300",
+              "IntervalList": [
+                {
+                  "duration": "PT10S",
+                  "Initial_date": "2022-11-17T17:37:41.618680300",
+                  "Final_date": "2022-11-17T17:37:51.618478700"
+                }
+              ],
+              "name": "first list",
+              "tag": "",
+              "class": "Task",
+              "Final_date": "2022-11-17T17:37:51.618478700"
+            },
+            {
+              "Initial_date": "2022-11-17T17:37:47.619029100",
+              "IntervalList": [
+                {
+                  "duration": "PT6S",
+                  "Initial_date": "2022-11-17T17:37:47.619029100",
+                  "Final_date": "2022-11-17T17:37:53.618928500"
+                }
+              ],
+              "name": "second list",
+              "tag": "",
+              "class": "Task",
+              "Final_date": "2022-11-17T17:37:53.618928500"
+            }
+          ],
+          "name": "problems",
+          "tag": "",
+          "class": "Project",
+          "Final_date": "2022-11-17T17:37:53.618928500"
+        }
+      ],
+      "name": "software design",
+      "tag": "",
+      "class": "Project",
+      "Final_date": "2022-11-17T17:37:53.618928500"
+    }
+  ],
+  "name": "root",
+  "tag": "",
+  "class": "Project",
+  "Final_date": "2022-11-17T17:37:59.618781100"
+}

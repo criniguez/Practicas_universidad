@@ -1,0 +1,128 @@
+@startuml
+
+class Client {
++main()
+}
+
+class Task {
+-intervalList : List<Interval>
+-isCounting : boolean
++start()
++stop()
++calculateTotalTime() : Duration
++accept(visitor : Visitor)
++update(time : LocalDateTime)
+
+}
+
+class Project {
+-chidren : List<Activity>
++accept(visitor : Visitor)
++addChild(activity : Activity)
++removeChild(activity : Activity)
++calculateTotalTime() : Duration
++update(time : LocalDateTime)
+}
+
+class Interval {
+-parent : Task
+-initialDate : LocalDateTime
+-finalDate : LocalDateTime
+-clock : ClockTimer
+#logger : Logger
+-duration : Duration
++update(observable : Observable, arg : Object)
++accept(visitor : Visitor)
+}
+
+package "java.util" {
+interface Observer {
++{abstract}update(observable : Observable, arg : Object)
+}
+
+abstract Observable{
++addObserver()
++deleteObserver()
++setChanged()
++notifyObservers()
+}
+}
+
+abstract class Activity{
+#{abstract}parent : Project
+#{abstract}name : String
+#{abstract}tags : List<String>
+#{abstract}finalDate : LocalDateTime
+#{abstract}initialDate : LocalDateTime
+#{abstract}logger : Logger
+#{abstract}checkInvariant() : boolean
+#{abstract}addTag(tag : String)
+#{abstract}tagListToString() : String
++{abstract}calculateTotalTime() : Duration
++{abstract}update(time : LocalDateTime)
++{abstract}accept(printer: Printer)
+}
+
+class ClockTimer {
+-instance : ClockTimer
+-time : LocalDateTime
+#logger : Logger
+-ClockTimer()
++getInstance() : ClockTimer
++getTime() : LocalDateTime
+}
+
+interface Visitor{
++VisitTask(task : Task)
++VisitProject(project : Project)
++VisitInterval(interval : Interval)
+}
+
+class Printer {
+#logger : Logger
+-print(activity : Activity, s : String)
++VisitTask(task : Task)
++VisitProject(project : Project)
++VisitInterval(interval : Interval)
+}
+
+class JSON{
+#logger : Logger
++save(root : Project, nameFile : String)
+-makeInterval(json : JSONObject) : Interval
+-makeTask(json : JSONObject) : Task
+-makeProject(json : JSONObject) : Project
++upload(nameFile : String) : Project
+}
+
+class SearchByTag{
+-tag : List<String>
+-mapActivities : Map<String, List<String>>
+#logger : Logger
+-searcher(activity : Activity)
++VisitTask(task : Task)
++VisitProject(project : Project)
++VisitInterval(interval : Interval)
+}
+
+ClockTimer --|>  Observable
+Observable o-left-> "*" Observer : observers
+Interval .right.|> Observer
+
+Project "1" *--> "*" Activity
+
+Visitor <|.. Printer
+Visitor <|.. SearchByTag
+
+Client  .down.> JSON
+
+Interval "1" --> "1" Task
+Task "0..N" -right-> "1" Project
+
+
+Client  .left.> Visitor
+Client "1" -right-* "*"Activity
+Project .up.|>  Activity
+Task  .up.|> Activity
+Task "1"--> "*"Interval
+@enduml
