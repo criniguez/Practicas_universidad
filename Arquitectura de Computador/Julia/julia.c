@@ -1,4 +1,3 @@
-```c
 #include <complex.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -86,4 +85,4 @@ void calc_pure_python(size_t size, int max_iterations) {
 int main(void) {
   calc_pure_python(10000, 300);
   exit(0);
-```
+
