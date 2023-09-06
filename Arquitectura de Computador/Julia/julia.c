@@ -19,7 +19,7 @@ long reduction(unsigned short *arr, size_t size)
 //cabs es basura no se paraleliza o algo del estilo 
 double absolute(double complex z)
 {
-    return sqrt(creal(z)*creal(z) + cimag(z)*cimag(z));
+    return creal(z)*creal(z) + cimag(z)*cimag(z);
 }
 
 
@@ -32,7 +32,7 @@ void calculate_z(unsigned short *out, int max_iterations, double complex *zs, in
     for (int i = 0; i < size; i++) {
         double complex z = zs[i];
 
-        for (j = 0;  absolute(z) < 2.0 && j < max_iterations; j++) {
+        for (j = 0;  absolute(z) < 4.0 && j < max_iterations; j++) {
           z = z * z + cs;
         }
         out[i] = j;
